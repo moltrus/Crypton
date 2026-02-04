@@ -1,0 +1,101 @@
+enabled: true
+logs_enabled: true
+data_path: "data/"
+logs_path: "data/logs/rss_feed_logs.log"
+sql_db: "data/sql_db/db.sqlite3"
+
+sites:
+  enabled: true
+  output_folder: "rss_feeds"
+  refresh_rate: 15
+  urls:
+    - "https://decrypt.co/feed/0"
+    - "https://www.coindesk.com/arc/outboundfeeds/rss"
+    - "https://cryptoslate.com/feed/"
+    - "https://bitcoinmagazine.com/feed"
+    - "https://www.decrypttoday.com/rss/latest-posts"
+    - "https://www.decrypttoday.com/rss/popular-posts"
+    - "https://www.decrypttoday.com/rss/category/people"
+    - "https://www.decrypttoday.com/rss/category/startup"
+    - "https://www.decrypttoday.com/rss/category/interviews"
+    - "https://www.decrypttoday.com/rss/category/events"
+    - "https://www.decrypttoday.com/rss/category/mining"
+    - "https://www.decrypttoday.com/rss/category/wallets"
+    - "https://www.decrypttoday.com/rss/category/nft"
+    - "https://www.decrypttoday.com/rss/category/defi"
+    - "https://www.decrypttoday.com/rss/category/exchange"
+    - "https://www.decrypttoday.com/rss/category/market"
+    - "https://www.decrypttoday.com/rss/category/crypto"
+    - "https://www.decrypttoday.com/rss/category/tech"
+    - "https://www.decrypttoday.com/rss/category/apps"
+    - "https://crypto.news/feed/"
+    - "https://www.cryptopolitan.com/feed/"
+    - "https://www.cryptopotato.com/feed/"
+    - "https://www.cointribune.com/en/feed/"
+    - "https://www.cryptobriefing.com/feed/"
+    - "https://thecryptobasic.com/feed/"
+    - "https://coingape.com/feed/"
+    - "https://cointelegraph.com/editors_pick_rss"
+    - "https://cointelegraph.com/rss"
+    - "https://cointelegraph.com/rss/tag/altcoin"
+    - "https://cointelegraph.com/rss/tag/bitcoin"
+    - "https://cointelegraph.com/rss/tag/blockchain"
+    - "https://cointelegraph.com/rss/tag/ethereum"
+    - "https://cointelegraph.com/rss/tag/litecoin"
+    - "https://cointelegraph.com/rss/tag/monero"
+    - "https://cointelegraph.com/rss/tag/regulation"
+    - "https://cointelegraph.com/rss/category/analysis"
+    - "https://cointelegraph.com/rss/category/follow-up"
+    - "https://cointelegraph.com/rss/category/in-depth"
+    - "https://cointelegraph.com/rss/category/quiz"
+    - "https://cointelegraph.com/rss/category/market-analysis"
+    - "https://cointelegraph.com/rss/category/top-10-cryptocurrencies"
+    - "https://cointelegraph.com/rss/category/weekly-overview"
+
+  exclude_headers: []
+
+gnews:
+  enabled: false
+  output_folder: "rss_feeds"
+  refresh_rate: 15
+  params:
+    - q: "crypto latest news"
+      hl: "en-IN"
+      gl: "IN"
+      ceid: "IN:en"
+    - q: "latest crypto updates+site:tradingview.com"
+      hl: "en-IN"
+      gl: "IN"
+      ceid: "IN:en"
+
+default_extractor_method: "all"
+extractor_mapping:
+  newspaper3k:
+    - "cointelegraph.com"
+    - "crypto.news"
+    - "cryptobriefing.com"
+    - "decrypt.co"
+    - "thecryptobasic.com"
+    - "coindesk.com"
+    - "cointribune.com"
+  trafilatura:
+    - "coingape.com"
+
+pinecone:
+  enabled: true
+  index_name: "rss-articles"
+  index_host: "rss-articles-xxxxxx.us-east-1.pinecone.io"
+  dimension: 1024
+  metric: "cosine"
+  cloud: "aws"
+  region: "us-east-1"
+  max_words_per_chunk: 5500
+  namespace: "rss-feeds"
+  batch_size: 2
+
+chroma_db:
+  enabled: true
+  persist_directory: "data/chroma_db"
+  collection_name: "rss_articles"
+  batch_size: 1
+  embedding_delay: 0.1

@@ -1,0 +1,6 @@
+.venv/
+.vscode/
+__pycache__/
+unused/
+data/
+AGENTS.md
